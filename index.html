@@ -1,41 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>2 Kişilik Penaltı Oyunu</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Penalty Game</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>⚽ 2 Kişilik Penaltı Oyunu</h1>
+<h1>⚽ Ultimate Penalty Game</h1>
 
-<div class="game">
-
-    <h2 id="round">Tur: 1 / 5</h2>
-
-    <div class="controls">
-        <div>
-            <h3>Oyuncu 1 - Şut</h3>
-            <button onclick="setShooter('sol')">Sol</button>
-            <button onclick="setShooter('orta')">Orta</button>
-            <button onclick="setShooter('sağ')">Sağ</button>
-        </div>
-
-        <div>
-            <h3>Oyuncu 2 - Kaleci</h3>
-            <button onclick="setGoalkeeper('sol')">Sol</button>
-            <button onclick="setGoalkeeper('orta')">Orta</button>
-            <button onclick="setGoalkeeper('sağ')">Sağ</button>
-        </div>
-    </div>
-
-    <button class="shoot-btn" onclick="shoot()">Şut Çek!</button>
-
-    <h2 id="result"></h2>
-
-    <h3 id="score">Skor: 0 - 0</h3>
-
+<div class="mode-select">
+    <button onclick="setMode('pvp')">2 Kişilik</button>
+    <button onclick="setMode('cpu')">Bilgisayara Karşı</button>
 </div>
+
+<h2 id="info">Yön seçin</h2>
+
+<div class="stadium">
+    <div class="goalkeeper" id="keeper"></div>
+    <div class="ball" id="ball"></div>
+</div>
+
+<div class="controls">
+    <button onclick="shoot('left')">Sol</button>
+    <button onclick="shoot('center')">Orta</button>
+    <button onclick="shoot('right')">Sağ</button>
+</div>
+
+<h3 id="score">Skor: 0 - 0</h3>
 
 <script src="script.js"></script>
 </body>
