@@ -1,35 +1,52 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(to bottom, #2ecc71, #27ae60);
-    color: white;
+body{
+    margin:0;
+    font-family:Arial;
+    text-align:center;
+    background:linear-gradient(#1e3c72,#2a5298);
+    color:white;
 }
 
-.game {
-    margin-top: 30px;
+.stadium{
+    position:relative;
+    width:300px;
+    height:200px;
+    margin:30px auto;
+    background:white;
+    border:5px solid #333;
+    border-radius:10px;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+.goalkeeper{
+    position:absolute;
+    bottom:20px;
+    left:120px;
+    width:60px;
+    height:20px;
+    background:red;
+    transition:0.3s;
 }
 
-button:hover {
-    opacity: 0.8;
+.ball{
+    position:absolute;
+    bottom:0;
+    left:140px;
+    width:20px;
+    height:20px;
+    background:black;
+    border-radius:50%;
+    transition:0.5s;
 }
 
-.shoot-btn {
-    background-color: #e74c3c;
-    color: white;
-    margin-top: 20px;
+button{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+@media(max-width:600px){
+    .stadium{
+        width:90%;
+    }
 }
