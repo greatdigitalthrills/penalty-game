@@ -71,3 +71,8 @@ function updateScore(){
     document.getElementById("score").innerText =
     "Skor: " + playerScore + " - " + cpuScore;
 }
+document.addEventListener("keydown", function(e){
+    if(e.key === "a") shoot("left");
+    if(e.key === "s") shoot("center");
+    if(e.key === "d") shoot("right");
+});
