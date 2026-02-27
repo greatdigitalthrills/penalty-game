@@ -1,69 +1,73 @@
-let shooterChoice = null;
-let goalkeeperChoice = null;
-let player1Score = 0;
-let player2Score = 0;
+let mode = "pvp";
+let playerScore = 0;
+let cpuScore = 0;
 let round = 1;
-const maxRounds = 5;
+let maxRounds = 5;
 
-function setShooter(choice) {
-    shooterChoice = choice;
+const ball = document.getElementById("ball");
+const keeper = document.getElementById("keeper");
+
+const goalSound = new Audio("goal.mp3");
+const saveSound = new Audio("save.mp3");
+
+function setMode(selected){
+    mode = selected;
+    alert("Mod: " + (mode === "pvp" ? "2 Kişilik" : "Bilgisayara Karşı"));
 }
 
-function setGoalkeeper(choice) {
-    goalkeeperChoice = choice;
-}
+function shoot(direction){
 
-function shoot() {
+    let keeperDirection;
 
-    if (!shooterChoice || !goalkeeperChoice) {
-        alert("Her iki oyuncu da seçim yapmalı!");
-        return;
-    }
-
-    if (shooterChoice === goalkeeperChoice) {
-        document.getElementById("result").innerText = "🧤 Kaleci kurtardı!";
-        player2Score++;
+    if(mode === "cpu"){
+        const dirs = ["left","center","right"];
+        keeperDirection = dirs[Math.floor(Math.random()*3)];
     } else {
-        document.getElementById("result").innerText = "⚽ GOL!";
-        player1Score++;
+        keeperDirection = prompt("Kaleci yön seçsin (left, center, right)");
     }
 
+    animateShot(direction);
+    animateKeeper(keeperDirection);
+
+    setTimeout(()=>{
+        if(direction === keeperDirection){
+            cpuScore++;
+            saveSound.play();
+            alert("Kurtarış!");
+        } else {
+            playerScore++;
+            goalSound.play();
+            alert("GOOOOL!");
+        }
+
+        updateScore();
+        resetPositions();
+
+    },600);
+}
+
+function animateShot(dir){
+    if(dir === "left") ball.style.left = "50px";
+    if(dir === "center") ball.style.left = "140px";
+    if(dir === "right") ball.style.left = "230px";
+    ball.style.bottom = "150px";
+}
+
+function animateKeeper(dir){
+    if(dir === "left") keeper.style.left = "30px";
+    if(dir === "center") keeper.style.left = "120px";
+    if(dir === "right") keeper.style.left = "210px";
+}
+
+function resetPositions(){
+    setTimeout(()=>{
+        ball.style.left = "140px";
+        ball.style.bottom = "0";
+        keeper.style.left = "120px";
+    },500);
+}
+
+function updateScore(){
     document.getElementById("score").innerText =
-        "Skor: " + player1Score + " - " + player2Score;
-
-    round++;
-
-    document.getElementById("round").innerText =
-        "Tur: " + round + " / " + maxRounds;
-
-    shooterChoice = null;
-    goalkeeperChoice = null;
-
-    if (round > maxRounds) {
-        endGame();
-    }
-}
-
-function endGame() {
-
-    let message;
-
-    if (player1Score > player2Score) {
-        message = "🏆 Oyuncu 1 Kazandı!";
-    } else if (player2Score > player1Score) {
-        message = "🏆 Oyuncu 2 Kazandı!";
-    } else {
-        message = "🤝 Berabere!";
-    }
-
-    alert(message);
-
-    // Reset
-    player1Score = 0;
-    player2Score = 0;
-    round = 1;
-
-    document.getElementById("score").innerText = "Skor: 0 - 0";
-    document.getElementById("round").innerText = "Tur: 1 / 5";
-    document.getElementById("result").innerText = "";
+    "Skor: " + playerScore + " - " + cpuScore;
 }
