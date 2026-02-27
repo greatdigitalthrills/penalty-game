@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>2 Kişilik Penaltı Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>⚽ 2 Kişilik Penaltı Oyunu</h1>
+
+<div class="game">
+
+    <h2 id="round">Tur: 1 / 5</h2>
+
+    <div class="controls">
+        <div>
+            <h3>Oyuncu 1 - Şut</h3>
+            <button onclick="setShooter('sol')">Sol</button>
+            <button onclick="setShooter('orta')">Orta</button>
+            <button onclick="setShooter('sağ')">Sağ</button>
+        </div>
+
+        <div>
+            <h3>Oyuncu 2 - Kaleci</h3>
+            <button onclick="setGoalkeeper('sol')">Sol</button>
+            <button onclick="setGoalkeeper('orta')">Orta</button>
+            <button onclick="setGoalkeeper('sağ')">Sağ</button>
+        </div>
+    </div>
+
+    <button class="shoot-btn" onclick="shoot()">Şut Çek!</button>
+
+    <h2 id="result"></h2>
+
+    <h3 id="score">Skor: 0 - 0</h3>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
